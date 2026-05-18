@@ -1,16 +1,25 @@
-for cpp :-
-nano bfs.cpp
+if g++ is not installed then 
+sudo apt update
+sudo apt install g++
+sudo apt install build-essential
 
-CTRL + O
+FOR CPP:-
+to create file->nano bfs.cpp
+
+to save->CTRL + O
 ENTER
-CTRL + X
+to exit->CTRL + X
 
+to compiler->
 g++ bfs.cpp -fopenmp -o bfs
+or
+g++ -fopenmp bfs.cpp -o bfs
 
+to run->
 ./bfs
 
 
-for cuda program:-
+FOR CUDA:-
 step 1- open terminal
 
 step 2-type- 
