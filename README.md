@@ -4,17 +4,24 @@ for cpp :-Run the program as (gcc or g++):
 
 for cuda program:-
 step 1- open terminal
+
 step 2-type- 
     nvcc --version
+
 step 3-create/open file
     nano vectorAdd.cu
+
 step 4-write code
+
 step 5-save file
       control + O
+
 step 6 exit file
     control + X
+
 step 7-compiler code
     nvcc vectorAdd.cu -o vectorAdd
+
 step 8- run code
     ./vectorAdd
 
