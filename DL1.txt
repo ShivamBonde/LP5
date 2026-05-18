@@ -1,0 +1,93 @@
+# Boston Housing Price Prediction using Deep Neural Network
+
+# Import Libraries
+import pandas as pd
+import numpy as np
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+
+# Load Dataset
+data = pd.read_csv("housing.csv", delim_whitespace=True, header=None)
+
+# Display Dataset
+print("First 5 Rows of Dataset:\n")
+print(data.head())
+
+# Display Shape
+print("\nDataset Shape:", data.shape)
+
+# Split Features and Target
+X = data.iloc[:, :-1].values
+y = data.iloc[:, -1].values
+
+# Split Dataset into Training and Testing
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Feature Scaling
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Create Deep Neural Network Model
+model = Sequential()
+
+# Input Layer + Hidden Layer 1
+model.add(Dense(64, activation='relu', input_shape=(X_train.shape[1],)))
+
+# Hidden Layer 2
+model.add(Dense(32, activation='relu'))
+
+# Hidden Layer 3
+model.add(Dense(16, activation='relu'))
+
+# Output Layer
+model.add(Dense(1))
+
+# Compile Model
+model.compile(
+    optimizer='adam',
+    loss='mean_squared_error',
+    metrics=['mean_absolute_error']
+)
+
+# Display Model Summary
+print("\nModel Summary:\n")
+model.summary()
+
+# Train the Model
+history = model.fit(
+    X_train,
+    y_train,
+    epochs=100,
+    batch_size=16,
+    validation_split=0.1,
+    verbose=1
+)
+
+# Predict Values
+y_pred = model.predict(X_test)
+
+# Calculate Performance Metrics
+mse = mean_squared_error(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+
+# Display Results
+print("\nModel Performance")
+print("-------------------")
+print("Mean Squared Error :", mse)
+print("Mean Absolute Error:", mae)
+
+# Display Sample Predictions
+print("\nSample Predictions:\n")
+
+for i in range(5):
+    print("Actual Price =", y_test[i],
+          " Predicted Price =", y_pred[i][0])
