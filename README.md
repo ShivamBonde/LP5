@@ -1,6 +1,14 @@
-for cpp :-Run the program as (gcc or g++):
->> g++ filename.cpp -o filename.exe -fopenmp
->> ./filename.exe
+for cpp :-
+nano bfs.cpp
+
+CTRL + O
+ENTER
+CTRL + X
+
+g++ bfs.cpp -fopenmp -o bfs
+
+./bfs
+
 
 for cuda program:-
 step 1- open terminal
