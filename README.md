@@ -3,3 +3,7 @@ for cpp :-Run the program as (gcc or g++):
 >> ./filename.exe
 
 for cuda program:-
+
+
+
+for DL EXP1- housing.csv
